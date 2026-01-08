@@ -1,63 +1,212 @@
-/* RESET MINIMAL */
+/* =========================================================
+   Portfolio — Aubry Varen
+   Cyberpunk sobre / low-noise
+   ========================================================= */
+
+:root {
+    --bg-main: #0b0e14;
+    --bg-card: #111520;
+    --border-soft: #2a2f45;
+
+    --text-main: #e6e8ee;
+    --text-muted: #9aa3c7;
+
+    --neon-cyan: #4fdcff;
+    --neon-violet: #9b7cff;
+}
+
+/* ---------------------------------------------------------
+   Base
+   --------------------------------------------------------- */
+
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #1e1e26, #0f0f14);
-    color: #e6e6eb;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    display: flex;
-    flex-direction: column;
-}
+    margin: 0;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(79, 220, 255, 0.05), transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(155, 124, 255, 0.05), transparent 40%),
+        var(--bg-main);
 
-/* LAYOUT */
-.container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-}
-
-.card {
-    max-width: 520px;
-    padding: 40px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* TYPO */
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
-    letter-spacing: 0.5px;
-}
-
-.subtitle {
-    font-size: 1rem;
-    opacity: 0.85;
-    margin-bottom: 24px;
+    color: var(--text-main);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.6;
 }
 
-.hint {
-    font-size: 0.9rem;
-    opacity: 0.6;
-    font-style: italic;
+/* ---------------------------------------------------------
+   Liens
+   --------------------------------------------------------- */
+
+a {
+    color: var(--neon-cyan);
+    text-decoration: none;
 }
 
-/* FOOTER */
+a:hover {
+    text-shadow: 0 0 6px rgba(79, 220, 255, 0.6);
+}
+
+/* ---------------------------------------------------------
+   Structure
+   --------------------------------------------------------- */
+
+header {
+    padding: 0px 0px 0px 150px;
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    background-color: rgb(12, 15, 21);
+    z-index: 1000;
+    display: flex;
+}
+
+header ul {
+    list-style: none;
+    padding: 10px 0px 0px 45%;
+    margin: 10px 0 20px 0;
+    display: flex;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+
+
+section {
+    padding: 0 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+section {
+    scroll-margin-top: 70px;
+}
+
 footer {
+    margin-top: 100px;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--text-muted);
     text-align: center;
-    padding: 16px;
-    font-size: 0.75rem;
-    opacity: 0.4;
+    font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   Titres
+   --------------------------------------------------------- */
+
+
+h1 {
+    font-family: "Oxanium", system-ui, sans-serif;
+    font-size: 2.8rem;
+    margin: 0px;
+    letter-spacing: 0.5px;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 12px rgba(79, 220, 255, 0.25);
+    white-space: nowrap;
+}
+
+h2 {
+    font-family: "Rajdhani", system-ui, sans-serif;
+    font-size: 1.6rem;
+    margin-top: 70px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--neon-violet);
+}
+
+h3 {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--neon-cyan);
+}
+
+/* ---------------------------------------------------------
+   Texte
+   --------------------------------------------------------- */
+
+p {
+    max-width: 700px;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 700px;
+}
+
+/* ---------------------------------------------------------
+   Grille & cartes
+   --------------------------------------------------------- */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 26px;
+    margin-top: 35px;
+}
+
+.card {
+    position: relative;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(0, 0, 0, 0.2)), var(--bg-card);
+
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 22px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* effet "plaque techno" */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(120deg,
+            transparent 30%,
+            rgba(79, 220, 255, 0.15),
+            transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon-cyan);
+    box-shadow:
+        0 0 0 1px rgba(79, 220, 255, 0.2),
+        0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    header {
+        padding-top: 70px;
+    }
 }
